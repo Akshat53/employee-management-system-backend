@@ -51,12 +51,15 @@ To run the application locally, follow these steps:
 
 ## Usage
 
--Create a new employee:
+**Create a new employee:**
+
     POST http://localhost:8080/api/employees
-    ## Create Employee API Example
+
+ **Create Employee API Example**
 
 To create a new employee, send a POST request to the `/api/employees` endpoint with the following JSON data:
 
+```json
 {
   "firstName": "John",
   "lastName": "Doe",
@@ -65,19 +68,19 @@ To create a new employee, send a POST request to the `/api/employees` endpoint w
   "gender": "Male",
   "companyName": "ABC Corp"
 }
+```
 
--List all employees:
+**List all employees:**
     GET http://localhost:8080/api/employees
 
--Get an employee by ID:
+**Get an employee by ID:**
     GET http://localhost:8080/api/employees/{id}
 
 
-
--Update an employee:
+**Update an employee:**
     PUT http://localhost:8080/api/employees/{id}
 
--Delete an employee:
+**Delete an employee:**
     DELETE http://localhost:8080/api/employees/{id}
 
 
