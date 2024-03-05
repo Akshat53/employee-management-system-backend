@@ -57,7 +57,6 @@ To run the application locally, follow these steps:
 
 To create a new employee, send a POST request to the `/api/employees` endpoint with the following JSON data:
 
-```json
 {
   "firstName": "John",
   "lastName": "Doe",
