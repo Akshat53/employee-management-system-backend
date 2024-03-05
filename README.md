@@ -31,6 +31,7 @@ To run the application locally, follow these steps:
     cd employee-management
 
 3. **Build the application:**
+
     ./mvnw clean package
 
 4. **Start the application:**
@@ -40,6 +41,7 @@ To run the application locally, follow these steps:
     **Note: Make sure you have MySQL running and configured correctly.**
 
 5. **Access the application:**
+
     The application will be accessible at http://localhost:8080.
 
     **Default username and password for basic authentication are:**
@@ -49,14 +51,29 @@ To run the application locally, follow these steps:
 
 ## Usage
 
+-Create a new employee:
+    POST http://localhost:8080/api/employees
+    ## Create Employee API Example
+
+To create a new employee, send a POST request to the `/api/employees` endpoint with the following JSON data:
+
+```json
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john.doe@example.com",
+  "mobileNumber": "1234567890",
+  "gender": "Male",
+  "companyName": "ABC Corp"
+}
+
 -List all employees:
     GET http://localhost:8080/api/employees
 
 -Get an employee by ID:
     GET http://localhost:8080/api/employees/{id}
 
--Create a new employee:
-    POST http://localhost:8080/api/employees
+
 
 -Update an employee:
     PUT http://localhost:8080/api/employees/{id}
