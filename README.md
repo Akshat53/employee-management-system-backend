@@ -73,6 +73,5 @@ Feel free to contribute to this project by forking the repository and submitting
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-Replace `Akshat53` in the clone URL with your actual GitHub username.
 
 
