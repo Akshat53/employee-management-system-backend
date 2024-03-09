@@ -3,11 +3,14 @@ package com.employee.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.employee.exception.RoleNotFoundException;
 import com.employee.model.Employee;
 import com.employee.repository.EmployeeRepository;
 
 import java.util.List;
 import java.util.Optional;
+
+
 
 
 @Service
@@ -44,5 +47,19 @@ public class EmployeeServiceImpl implements EmployeeService {
             return true;
         }
         return false;
+    }
+    @Override
+    public List<Employee> getEmployeeByRole(String role) {
+        List<Employee> employees = employeeRepository.findByRole(role);
+        if (employees.isEmpty()) {
+            throw new RoleNotFoundException("Role not found: " + role);
+        }
+        return employees;
+    }
+    
+    
+    @Override
+    public List<Employee> getEmployeeByDepartment(String department) {
+        return employeeRepository.findByDepartment(department);
     }
 }

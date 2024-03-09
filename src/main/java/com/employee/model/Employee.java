@@ -18,8 +18,48 @@ public class Employee {
     private String mobileNumber;
     private String gender;
     private String companyName;
+    
+    private String role;
+   
+    private String department;
 
-    public Employee() {
+    public Employee(Long id, String firstName, String lastName, String email, String mobileNumber, String gender,
+			String companyName, String role, String department) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.mobileNumber = mobileNumber;
+		this.gender = gender;
+		this.companyName = companyName;
+		this.role = role;
+		this.department = department;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public Employee(Long id, String role) {
+		super();
+		this.id = id;
+		this.role = role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public Employee() {
         // Default constructor
     }
 

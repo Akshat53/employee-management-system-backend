@@ -5,9 +5,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import com.employee.exception.DepartmentNotFoundException;
+import com.employee.exception.RoleNotFoundException;
 import com.employee.model.Employee;
 import com.employee.response.ApiResponse;
 import com.employee.service.EmployeeService;
+
+
 import java.util.List;
 import java.util.Optional;
 
@@ -35,15 +39,17 @@ public class EmployeeController {
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse<>(false, "Employee not found", null));
     }
-
+    
     @PostMapping
     public ResponseEntity<ApiResponse<Employee>> createEmployee(@Validated @RequestBody Employee employee) {
+        
         Employee createdEmployee = employeeService.createEmployee(employee);
         return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse<>(true, "Employee created", createdEmployee));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse<Employee>> updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
+    public ResponseEntity<ApiResponse<Employee>> updateEmployee(@PathVariable Long id, @Validated @RequestBody Employee employee) {
+        
         Employee updatedEmployee = employeeService.updateEmployee(id, employee);
         if (updatedEmployee != null) {
             return ResponseEntity.ok(new ApiResponse<>(true, "Employee updated", updatedEmployee));
@@ -58,4 +64,27 @@ public class EmployeeController {
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse<>(false, "Employee not found", null));
     }
+    @GetMapping("/role/{role}")
+    public ResponseEntity<ApiResponse<List<Employee>>> getEmployeeByRole(@PathVariable String role) {
+        try {
+            List<Employee> employees = employeeService.getEmployeeByRole(role);
+            return ResponseEntity.ok(new ApiResponse<>(true, "Employees fetched successfully", employees));
+        } catch (RoleNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                                 .body(new ApiResponse<>(false, e.getMessage(), null));
+        }
+        
+    }
+ 
+    
+    @GetMapping("/department/{department}")
+    public ResponseEntity<ApiResponse<List<Employee>>> getEmployeeByDepartment(@PathVariable String department) {
+        try {
+            List<Employee> employees = employeeService.getEmployeeByDepartment(department);
+            return ResponseEntity.ok(new ApiResponse<>(true, "Employees fetched successfully", employees));
+        } catch (DepartmentNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                                 .body(new ApiResponse<>(false, e.getMessage(), null));
+        }
+}
 }

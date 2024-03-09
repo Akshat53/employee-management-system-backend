@@ -1,5 +1,6 @@
 package com.employee.service;
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -11,4 +12,6 @@ public interface EmployeeService {
     Employee createEmployee(Employee employee);
     Employee updateEmployee(Long id, Employee employee);
     boolean deleteEmployee(Long id);
+    List<Employee> getEmployeeByRole(String role);
+    List<Employee> getEmployeeByDepartment(String department);
 }
