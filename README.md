@@ -83,6 +83,12 @@ To create a new employee, send a POST request to the `/api/employees` endpoint w
 **Delete an employee:**
     DELETE http://localhost:8080/api/employees/{id}
 
+**Get an employee:**
+    GET http://localhost:8080/api/employees/department{deparment}
+
+**Get an employee by role:**
+    GET http://localhost:8080/api/employees/role/{role}
+
 
 ## Contributing
 
